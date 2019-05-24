@@ -20,6 +20,9 @@ Route::get('detail/{id}', 'DetailController@show');
 
 Route::get('search', 'SearchController@Search');
 
+Route::get('/auth/{provider}', 'LoginController@redirectToProvider');
+Route::get('/auth/{provide}/callback', 'LoginController@handleProviderCallback');
+
 // post home
 Route::get('dang-tin', 'PostController@index');
 Route::post('dang-tin', 'PostController@posthome');

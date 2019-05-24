@@ -231,7 +231,7 @@
 						</div>
 						<div class="login-gg">
 							<div class="bg-lg-gg">
-								<p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản google</p>
+								<a href="{{url('auth/google')}}"><p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản google</p></a>
 							</div>
 						</div>
 						<p>Nếu chưa có tài khoản?<a id="dangki" href="{{url('register')}}"> Đăng ký</a></p>

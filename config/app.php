@@ -165,6 +165,7 @@ return [
 		Maatwebsite\Excel\ExcelServiceProvider::class,
 		Zizaco\Entrust\EntrustServiceProvider::class,
 		Cviebrock\EloquentSluggable\ServiceProvider::class,
+		Laravel\Socialite\SocialiteServiceProvider::class,
 
 		/*
 			         * Package Service Providers...
@@ -230,6 +231,7 @@ return [
 		'View' => Illuminate\Support\Facades\View::class,
 		'Excel' => Maatwebsite\Excel\Facades\Excel::class,
 		'Entrust' => Zizaco\Entrust\EntrustFacade::class,
+		'Socialite' => Laravel\Socialite\Facades\Socialite::class,
 
 	],
 

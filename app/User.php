@@ -21,7 +21,7 @@ class User extends Authenticatable {
 
 	public $remember_token = false;
 	protected $fillable = [
-		'name', 'status', 'phone', 'password',
+		'username','email','provider','provider_id', 'status', 'password',
 	];
 
 	/**

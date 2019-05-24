@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Socialite, Redirect, Session, URL;
 
 class LoginController extends Controller {
 	//
@@ -68,4 +69,40 @@ class LoginController extends Controller {
 
 		}
 	}
+
+	public function redirectToProvider($provider)
+    {
+        if(!Session::has('pre_url')){
+            Session::put('pre_url', URL::previous());
+        }else{
+            if(URL::previous() != URL::to('login')) Session::put('pre_url', URL::previous());
+        }
+        return Socialite::driver($provider)->redirect();
+	}  
+	
+	public function handleProviderCallback($provider)
+    {
+        $user = Socialite::driver($provider)->user();
+        $authUser = $this->findOrCreateUser($user, $provider);
+        Auth::login($authUser, true);
+        return Redirect::to(Session::get('pre_url'));
+	}
+	
+	public function findOrCreateUser($user, $provider)
+    {
+        $authUser = User::where('provider_id', $user->id)->first();
+        if ($authUser) {
+            return $authUser;
+		}
+		$data = [
+			'username'     => $user->name,
+			'password'	=> md5('121233213213'),
+            'email'    => $user->email,
+            'provider' => $provider,
+			'provider_id' => $user->id,
+			'status' => 1
+		];
+	
+        User::create($data);
+    }
 }

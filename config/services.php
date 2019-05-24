@@ -34,5 +34,9 @@ return [
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
-
+    'google' => [
+        'client_id' => '628684159672-ngvb8h4ilbk3gcfir424fq44i2f0tml8.apps.googleusercontent.com',
+        'client_secret' => 'h_2mMyihVA9GpqD4rkLFEcxU',
+        'redirect' => 'http://localhost/findhomed.com/auth/google/callback',
+    ],
 ];

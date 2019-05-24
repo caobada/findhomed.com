@@ -14,6 +14,7 @@
 Route::resource('/', 'ShowController');
 
 Route::get('sendmail','SendMailController@SendMail');
+Route::get('pushnoti','PushNotification@push');
 Route::get('province/{id}', 'ShowController@province');
 Route::get('district/{id}', 'ShowController@district');
 

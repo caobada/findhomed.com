@@ -1,0 +1,104 @@
+     <script src="https://www.gstatic.com/firebasejs/5.5.9/firebase.js"></script>  
+  <!-- <link rel="manifest" href="manifest.json"> -->
+
+  <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyAjvLD7_uFmpjOCfBSrAUiedEmq3Ndd5jM",
+        authDomain: "ghp2018-fce75.firebaseapp.com",
+        databaseURL: "https://ghp2018-fce75.firebaseio.com",
+        projectId: "ghp2018-fce75",
+        storageBucket: "ghp2018-fce75.appspot.com",
+        messagingSenderId: "140536310728",
+        appId: "1:140536310728:web:380e4cd573c37c8d"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script>
+    // Retrieve Firebase Messaging object.
+    const messaging = firebase.messaging();
+    messaging.requestPermission().then(function() {      
+      console.log('Notification permission granted.');
+      if(isTokenSentToServer()){
+        console.log('Token already sent to server');
+      } else {
+        //get fcm token
+        registerToken();
+      } 
+      //registerToken();
+    }).catch(function(err) {
+      console.log('Unable to get permission to notify.', err);
+    });
+   // Registered
+   function subscribeToTopic(token) {
+        if(window.localStorage.getItem('isSub') == 0) {
+        $.ajax({
+           url : '{{asset("fcm/add-topic")}}',
+           type : 'POST',
+           data: 'token='+token,
+           success : function(res){ // code_html contient le HTML renvoyé
+               window.localStorage.setItem('isSub', 1);
+           }
+        });
+        }
+   }
+   
+   function registerToken(){
+      messaging.getToken()
+        .then(function(currentToken) {
+          if (currentToken) {
+            console.log(currentToken);
+            setTokenSentToServer(true);
+            window.localStorage.setItem('token_fcm', currentToken);
+            subscribeToTopic(currentToken);
+          } else {
+            // Show permission request.
+            //console.log('No Instance ID token available. Request permission to generate one.');
+            setTokenSentToServer(false);
+          }
+        }).catch(function(err) {
+          console.log('An error occurred while retrieving token. ', err);
+          showToken('Error retrieving Instance ID token. ', err);
+          setTokenSentToServer(false);
+        });
+    }
+    function setTokenSentToServer(sent) {
+      window.localStorage.setItem('sentToServer', sent ? '1' : '0');
+    }
+    function isTokenSentToServer() {
+      return window.localStorage.getItem('sentToServer') === '1';
+    }
+    function showToken(currentToken) {
+      var tokenElement = document.querySelector('#token');
+      //tokenElement.textContent = currentToken;
+    }
+    // ForeGround
+    messaging.onMessage(function(payLoad)
+    {
+      console.log("Message Received");
+      console.log(payLoad);
+      notificationTitle = payLoad.notification.title;
+      notificationOptions = {
+        body: payLoad.notification.body,
+        icon: payLoad.notification.icon,
+      };
+      var notification = new Notification(notificationTitle, notificationOptions);
+    });
+  </script>
+
+
+
+<script type="text/javascript">
+    (function(p,u,s,h){
+        p._pcq=p._pcq||[];
+        p._pcq.push(['_currentTime',Date.now()]);
+        s=u.createElement('script');
+        s.type='text/javascript';
+        s.async=true;
+        s.src='https://cdn.pushcrew.com/js/37f0048e0efa327b1db5bfa2465af923.js';
+        h=u.getElementsByTagName('script')[0];
+        h.parentNode.insertBefore(s,h);
+    })(window,document);
+  </script>
+

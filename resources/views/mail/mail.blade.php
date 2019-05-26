@@ -18,7 +18,13 @@
 box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.75);
     }
     .wrapper-mail h2{
-        color: red;
+        text-align:center;
+        color: #000;
+    }
+    .title-mail{
+        color: #F85A16;
+        font-size: 28px;
+
     }
     @media(max-width:768px){
         .wrapper-mail{
@@ -35,13 +41,22 @@ box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.75);
         <div class="container-mail">
             <div class="wrapper-mail">
                 <h2>Chúng tôi tìm thấy thông tin phù hợp với bạn!</h2>
-                <p><b>Title</b></p>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <p><b class="title-mail">{{$booking->title}}</b></p>
+                {!!$booking->content!!}
                 <div class="image-mail">
-                    <img src="https://pmcvariety.files.wordpress.com/2018/07/bradybunchhouse_sc11.jpg?w=1000&h=563&crop=1" height="200px" width="40%">
-                    <img src="https://pmcvariety.files.wordpress.com/2018/07/bradybunchhouse_sc11.jpg?w=1000&h=563&crop=1" height="200px" width="40%">
+                    @php
+                    $img = explode(';',$booking->image);                     
+                     @endphp
+                     
+                    <img src='<?php echo $message->embed($booking->file); ?>' height="200px" width="40%">
+               
                 </div>
-                <a href="http://localhost/findhomed.com/detail/25">Chi tiết bài viết</a>
+                
+                @if(isset($booking->id_home) && is_numeric($booking->id_home))
+                <a href='{{url("detail/$booking->id_home")}}'>Chi tiết bài viết</a>
+                @else
+                <a href='{{url("/")}}'>Truy cập trang để tìm hiểu thêm.</a>
+                @endif
             </div>
         </div>
 </body>

@@ -18,7 +18,7 @@
 	<link href="{{asset('file_upload/fileinput.min.css')}}">
 	<link rel="stylesheet" href="{{asset('css/style.css')}}">
 	<link rel="stylesheet" href="{{asset('css/mystyle.css')}}">
-
+	<link rel="manifest" href="{{asset('manifest.json')}}">
 	<style type="text/css">
 	*{
 		font-family: Tahoma, Arial, sans-serif;
@@ -257,7 +257,8 @@
 		</div>
 	</div>
 
-
+<div id="token_div"></div>
+<div id="permission_div"></div>
 
 </body>
 </html>
@@ -265,6 +266,29 @@
 <script>
   var base_url = 'http://'+'<?php echo  $_SERVER['SERVER_NAME']  ?>'+'/findhomed.com';  
 </script>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-messaging.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyC74SuaBUbsqSF1m1TRNnRlao-beGJVqrI",
+    authDomain: "test-firebase-38a1d.firebaseapp.com",
+    databaseURL: "https://test-firebase-38a1d.firebaseio.com",
+    projectId: "test-firebase-38a1d",
+    storageBucket: "test-firebase-38a1d.appspot.com",
+    messagingSenderId: "678296218716",
+    appId: "1:678296218716:web:f365aaea27510869"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+
+<script src="{{asset('js/push.js')}}"></script>
 <script type="text/javascript">
 	var offcanvasMenu = function() {
 
@@ -466,6 +490,9 @@
 		$('#price').select2();
 		$('#area').select2();
 		gethomesave();
+
+
+
 
 	})
 

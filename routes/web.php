@@ -82,5 +82,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function 
 	Route::post('add-type', 'AdminController@AddType');
 	Route::get('del-type/{id}', 'AdminController@DelType');
 	Route::get('send-mail-marketing','SendMailController@index');
-	Route::get('send-mail-action','SendMailController@action');
+	Route::post('send-mail-action','SendMailController@action');
 });

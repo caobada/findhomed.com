@@ -231,6 +231,7 @@
 
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
 </body>
 </html>
 

@@ -103,6 +103,7 @@ class LoginController extends Controller {
 			'status' => 1
 		];
 	
-        User::create($data);
+		User::create($data);
+		return $authUser = User::where('provider_id', $user->id)->first();
     }
 }

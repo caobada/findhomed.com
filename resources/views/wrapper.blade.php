@@ -231,7 +231,7 @@
 						</div>
 						<div class="login-gg">
 							<div class="bg-lg-gg">
-								<a href="{{url('auth/google')}}"><p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản google</p></a>
+								<a href="{{url('auth/google')}}"><p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản Google</p></a>
 							</div>
 						</div>
 						<p>Nếu chưa có tài khoản?<a id="dangki" href="{{url('register')}}"> Đăng ký</a></p>
@@ -262,6 +262,9 @@
 </body>
 </html>
 <script type="text/javascript" src="{{asset('js/jquery.session.js')}}"></script>
+<script>
+  var base_url = 'http://'+'<?php echo  $_SERVER['SERVER_NAME']  ?>'+'/findhomed.com';  
+</script>
 <script type="text/javascript">
 	var offcanvasMenu = function() {
 
@@ -381,13 +384,8 @@
 
 		$('#province').on('change',function(){
 			var provinceid = $(this).val();
-			var href = window.location.href;
-			var array = href.split("/");
-			var len = array.length
-			if(len==6) url = 'province/'+ provinceid;
-			else url = '../province/'+ provinceid
-				if(provinceid=="") provinceid=0;
-			$.ajax({
+			url = base_url+'/province/'+ provinceid;
+				$.ajax({
 				type: 'GET',
 				url : url ,
 				success:function(resp){

@@ -140,7 +140,7 @@
             <span>Quản lý người dùng</span>
           </a>
         </li>
-        <li class="treeview">
+        <!-- <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
             <span>Quảng cáo, hình ảnh</span>
@@ -153,6 +153,19 @@
             <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i>Tên Logo</a></li>
             <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Quảng cáo </a></li>
             <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Liên hệ </a></li>
+          </ul>
+        </li> -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Mail Marketing</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i>Thống kê</a></li>
+            <li><a href="{{url('admin/send-mail-marketing')}}"><i class="fa fa-circle-o"></i>Gửi mail</a></li>
           </ul>
         </li>
 

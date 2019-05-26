@@ -62,7 +62,9 @@ Route::get('admin/dang-nhap', 'AdminController@Login');
 Route::post('admin/dang-nhap', 'AdminController@PostLogin');
 //contact
 Route::get('lien-he', 'ShowController@Contact');
-
+Route::get('mail',function(){
+	return view('mail.mail');
+});
 // Admin page
 Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function () {
 	Route::get('/', 'AdminController@index');
@@ -79,4 +81,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function 
 	Route::post('option-type', 'AdminController@PostOptionType');
 	Route::post('add-type', 'AdminController@AddType');
 	Route::get('del-type/{id}', 'AdminController@DelType');
+	Route::get('send-mail-marketing','SendMailController@index');
+	Route::get('send-mail-action','SendMailController@action');
 });

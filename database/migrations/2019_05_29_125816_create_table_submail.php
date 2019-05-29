@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHometypeTable extends Migration
+class CreateTableSubmail extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +14,9 @@ class CreateHometypeTable extends Migration
     public function up()
     {
         //
-        Schema::dropIfExists('hometype');
-        Schema::create('hometype',function(Blueprint $table){
+        Schema::create('submail',function(Blueprint $table){
             $table->increments('id');
-            $table->string('nametype')->unique;
+            $table->string('mail')->unique;
             $table->timestamps();
             $table->softDeletes();
         });
@@ -30,6 +29,6 @@ class CreateHometypeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('hometype');
+        //
     }
 }

@@ -6,7 +6,8 @@ use Mail;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
-
+use App\Jobs\SendEmailJob;
+use Carbon\Carbon;
 class SendMailController extends Controller
 {
     //
@@ -39,32 +40,30 @@ class SendMailController extends Controller
             $type= $request->option_send;
             $title = $request->title;
             $content = $request->contentmail;
-            
+   
             if($type == 0){
-                $mail_arr = User::select('email')->get();
+                $info_user = User::all();
                
                     $booking = new \stdClass();
                     $booking->title = $title;
                     $booking->content = $content;
-                    if (isset($_FILES['img'])) {
-                        
-                       
-                        $booking->image = implode(';', $_FILES['img']['name']);
-                        // for ($i = 0; $i < count($file); $i++) {
-                             $file = 'public/images/home/'.$_FILES['img']['name'][0];
-                             $booking->file = $file;
-                            move_uploaded_file($_FILES['img']['tmp_name'][0], 'public/images/home/' . $file[0]);
-                        // }
+                    $filelocal = '';
+                    if ($request->hasFile('img')) {
+                       $file = $request->img;
+                       $location = 'public/images/home/';
+                         $filename = $file->getClientOriginalName();
+                         $file->move($location,$filename);
+                         $filelocal = $location.$filename;
+                         $booking->file = $filelocal;
                     } 
-                 
+                   
                     if($request->has('id_home')){
                         $booking->id_home = $request->id_home;
                     }
-                    foreach($mail_arr as $val){
+               
+                    foreach($info_user as $val){
                         if(!empty($val->email) && $val->email != null && $val->email != 'null'){
-                            Mail::to($val->email)->send(new MailLooking($booking),function($message){
-                                $message->attachData($file);
-                            });
+                            SendEmailJob::dispatch($booking,$val->email,$filelocal)->delay(Carbon::now()->addSeconds(2));
                         }
                     }
                 return redirect()->back()->with('confirm', 'thanh cong');

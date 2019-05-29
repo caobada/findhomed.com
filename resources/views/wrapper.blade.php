@@ -200,7 +200,8 @@
 	<script type="text/javascript" src="{{asset('js/jquery.validate.js')}}"></script>
 	<script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>
 	<script src="{{asset('js/select2.min.js')}}"></script>
-
+	<script src="{{asset('js/jquery.cookie.min.js')}}"></script>
+	<script src="{{asset('js/jpopup.min.js')}}"></script>
 
 
 
@@ -211,7 +212,7 @@
 		<div class="modal-dialog modal-dialog-centered" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h2 class="modal-title" id="exampleModalLongTitle">Đăng nhập</h2>
+					<h2 class="modal-title" style="text-align:center" id="exampleModalLongTitle">Đăng nhập</h2>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -219,7 +220,7 @@
 				<form method="post"  id="form-login">
 					<div class="modal-body">
 
-						<div class="info"></div>
+						<!-- <div class="info"></div>
 						<div class="form-group has-feedback" >
 							<span class="glyphicon glyphicon-user form-control-feedback"></span>
 							<input type="text" name="username" class="form-control" maxlength="10" size="10" placeholder="Username">
@@ -228,13 +229,13 @@
 							<span class="glyphicon glyphicon-lock form-control-feedback"></span>
 							<input type="password" name="password" class="form-control" placeholder="Password">
 							{{ csrf_field()}}
-						</div>
+						</div> -->
 						<div class="login-gg">
 							<div class="bg-lg-gg">
-								<a href="{{url('auth/google')}}"><p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản Google</p></a>
+								<a href="{{url('auth/google')}}"><p><i class="fa fa-google"></i> Đăng nhập bằng tài khoản Google+</p></a>
 							</div>
 						</div>
-						<p>Nếu chưa có tài khoản?<a id="dangki" href="{{url('register')}}"> Đăng ký</a></p>
+						<!-- <p>Nếu chưa có tài khoản?<a id="dangki" href="{{url('register')}}"> Đăng ký</a></p> -->
 
 
 				<!-- <div class="login-social">
@@ -248,14 +249,33 @@
 					</div>
 				</div> -->
 				</div>
-				 <div class="modal-footer">
+				 <!-- <div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-dismiss="modal" style="color:black">Đóng</button>
 					<button type="submit" class="btn btn-primary">Đăng nhập</button>
-				</div>
+				</div> -->
 	</form>
 			</div>
 		</div>
 	</div>
+
+
+	<!-- Modal Ads -->
+	<div class="popup_this" style="display:none;width:500px!important">
+			
+			<img src="" ></a>
+			<h1>Đăng kí nhận mail thông báo</h1>
+			<form id="sub-mail" >
+				<div class="form-group" >
+					<input type='text' name='email' class='form-control' placeholder="Email">
+				</div>
+				<div class="form-group" >
+					<input type='button' name='submit-submail' class='btn btn-success' value="Đăng kí">
+				</div>
+			</form>
+	</div>
+
+
+
 
 <div id="token_div"></div>
 <div id="permission_div"></div>
@@ -292,6 +312,17 @@
 <script type="text/javascript">
 	var offcanvasMenu = function() {
 
+		if(typeof $.cookie('sub-mail') === 'undefined'){
+			$('.popup_this').show();
+			$('.popup_this').bPopup();
+			$.cookie('sub-mail',true);
+		}else{
+			$('.popup_this').show();
+			$('.popup_this').bPopup();
+		}
+		
+
+
 		$('#page').prepend('<div id="fh5co-offcanvas" />');
 		$('#page').prepend('<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white"><i></i></a>');
 		var clone1 = $('.menu-1 > ul').clone();
@@ -307,7 +338,6 @@
 		// Hover dropdown menu on mobile
 		$('.offcanvas-has-dropdown').mouseenter(function(){
 			var $this = $(this);
-
 			$this
 			.addClass('active')
 			.find('ul')

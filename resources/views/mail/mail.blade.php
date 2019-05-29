@@ -44,12 +44,7 @@ box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.75);
                 <p><b class="title-mail">{{$booking->title}}</b></p>
                 {!!$booking->content!!}
                 <div class="image-mail">
-                    @php
-                    $img = explode(';',$booking->image);                     
-                     @endphp
-                     
-                    <img src='<?php echo $message->embed($booking->file); ?>' height="200px" width="40%">
-               
+                    <img src='{{$message->embed($mess)}}' height="200px" width="100%">
                 </div>
                 
                 @if(isset($booking->id_home) && is_numeric($booking->id_home))

@@ -17,7 +17,17 @@ body {
   line-height: 1.7;
    background: #fff;
  }
-
+.popup_this {
+  border-radius: 8px;
+  background:#fff;
+  top: 50%;
+  left: 50%;
+  text-align:center;
+  margin-top: -50px;
+  margin-left: -100px;
+  position: fixed;
+  padding: 30px;
+}
 #page {
   position: relative;
   overflow-x: hidden;

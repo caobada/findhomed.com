@@ -41,7 +41,7 @@
                             <label for="exampleInputFile">Hình ảnh(tối đa 4 hình ảnh)</label>
                             <div class="input-group">
                                 <div class="custom-file">
-                                    <input type="file" class="form-control" name="img[]"  multiple accept="image/*">
+                                    <input type="file" class="form-control" name="img"  accept="image/*">
                                 </div>
                             </div>
                         </div>

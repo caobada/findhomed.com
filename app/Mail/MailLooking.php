@@ -11,15 +11,17 @@ class MailLooking extends Mailable
 {
     use Queueable, SerializesModels;
     public $booking;
+    public $mess;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($booking)
+    public function __construct($booking,$mess)
     {
         //
         $this->booking = $booking;
+        $this->mess = $mess;
     }
 
     /**

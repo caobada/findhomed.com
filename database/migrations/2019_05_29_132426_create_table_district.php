@@ -14,18 +14,23 @@ class CreateTableDistrict extends Migration
     public function up()
     {
         //
+        Schema::dropIfExists('district');
+        Schema::dropIfExists('province');
+        Schema::dropIfExists('ward');
+
+
         Schema::create('district',function(Blueprint $table){
-            $table->tinyInteger('districtid')->unique;
+            $table->integer('districtid')->unique;
             $table->string('name');
             $table->string('type');
             $table->string('location');
-            $table->tinyInteger('provinceid');
+            $table->integer('provinceid');
             $table->timestamps();
             $table->softDeletes();
         });
 
         Schema::create('province',function(Blueprint $table){
-            $table->tinyInteger('provinceid')->unique;
+            $table->integer('provinceid')->unique;
             $table->string('name');
             $table->string('type');
             $table->timestamps();
@@ -33,11 +38,11 @@ class CreateTableDistrict extends Migration
         });
 
         Schema::create('ward',function(Blueprint $table){
-            $table->tinyInteger('wardid')->unique;
+            $table->integer('wardid')->unique;
             $table->string('name');
             $table->string('type');
             $table->string('location');
-            $table->tinyInteger('districtid');
+            $table->integer('districtid');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -51,6 +56,9 @@ class CreateTableDistrict extends Migration
     public function down()
     {
         //
+        Schema::dropIfExists('district');
+        Schema::dropIfExists('province');
+        Schema::dropIfExists('ward');
 
     }
 }

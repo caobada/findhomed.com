@@ -18,7 +18,10 @@ class CreateHometypeTable extends Migration
         Schema::create('hometype',function(Blueprint $table){
             $table->increments('id');
             $table->string('nametype')->unique;
-            $table->timestamps();
+            $table->string('nametypelink')->unique;
+            $table->tinyInteger('status');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->softDeletes();
         });
     }

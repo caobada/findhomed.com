@@ -20,6 +20,8 @@ Route::get('district/{id}', 'ShowController@district');
 
 Route::get('detail/{id}', 'DetailController@show');
 
+Route::post('sub-mail', 'SendMailController@subMail');
+
 Route::get('search', 'SearchController@Search');
 
 Route::get('/auth/{provider}', 'LoginController@redirectToProvider');

@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Role;
+use App\RoleUser;
 class EntrustSeeder extends Seeder
 {
     /**
@@ -11,75 +12,10 @@ class EntrustSeeder extends Seeder
      */
     public function run()
     {
-        Permission::create( [
-            'id'=>1,
-            'name'=>'add',
-            'display_name'=>'Thêm',
-            'description'=>NULL,
-            'created_at'=>NULL,
-            'updated_at'=>NULL
-            ] );
-            
+        
             
                         
-            Permission::create( [
-            'id'=>2,
-            'name'=>'delete',
-            'display_name'=>'Xóa',
-            'description'=>NULL,
-            'created_at'=>NULL,
-            'updated_at'=>NULL
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>3,
-            'name'=>'edit',
-            'display_name'=>'Sửa',
-            'description'=>NULL,
-            'created_at'=>NULL,
-            'updated_at'=>NULL
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>1,
-            'name'=>1
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>1,
-            'name'=>3
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>2,
-            'name'=>1
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>3,
-            'name'=>1
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>3,
-            'name'=>3
-            ] );
-            
-            
-                        
-            Permission::create( [
+            Role::create( [
             'id'=>1,
             'name'=>'admin',
             'display_name'=>'Admin',
@@ -90,7 +26,7 @@ class EntrustSeeder extends Seeder
             
             
                         
-            Permission::create( [
+            Role::create( [
             'id'=>2,
             'name'=>'user',
             'display_name'=>'User',
@@ -101,7 +37,7 @@ class EntrustSeeder extends Seeder
             
             
                         
-            Permission::create( [
+            Role::create( [
             'id'=>3,
             'name'=>'owner',
             'display_name'=>'Owner',
@@ -112,30 +48,10 @@ class EntrustSeeder extends Seeder
             
             
                         
-            Permission::create( [
-            'id'=>1,
-            'name'=>1
+            RoleUser::create( [
+            'user_id'=>1,
+            'role_id'=>1
             ] );
             
-            
-                        
-            Permission::create( [
-            'id'=>32,
-            'name'=>2
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>36,
-            'name'=>2
-            ] );
-            
-            
-                        
-            Permission::create( [
-            'id'=>37,
-            'name'=>2
-            ] );
     }
 }

@@ -14,6 +14,7 @@ class CreateTableSubmail extends Migration
     public function up()
     {
         //
+        Schema::dropIfExists('submail');
         Schema::create('submail',function(Blueprint $table){
             $table->increments('id');
             $table->string('mail')->unique;
@@ -29,6 +30,7 @@ class CreateTableSubmail extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('submail');
         //
     }
 }

@@ -13,7 +13,14 @@ class UserSeeder extends Seeder
     public function run()
     {
         //
-        $data = ['username'=>'admin','password'=>Hash::make('123456'),'email'=>'admin@admin.com','status'=>1];
+        $data = [
+            'username'=>'admin',
+            'password'=>Hash::make('123456'),
+            'email'=>'admin@admin.com',
+            'provider'=> '',
+            'provider_id' => '',
+            'status'=>1
+        ];
         User::create($data);
 
     }

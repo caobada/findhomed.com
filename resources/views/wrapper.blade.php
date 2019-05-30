@@ -265,11 +265,13 @@
 			<img src="" ></a>
 			<h1>Đăng kí nhận mail thông báo</h1>
 			<form id="sub-mail" >
+			{{ csrf_field() }}
 				<div class="form-group" >
 					<input type='text' name='email' class='form-control' placeholder="Email">
 				</div>
 				<div class="form-group" >
-					<input type='button' name='submit-submail' class='btn btn-success' value="Đăng kí">
+					<p class="show-error text-danger" style="display:none;font-size:12px"></p>
+					<input type='button' id="submail-submit" name='submit-submail' class='btn btn-success' value="Đăng kí">
 				</div>
 			</form>
 	</div>
@@ -321,7 +323,7 @@
 			$('.popup_this').bPopup();
 		}
 		
-
+		
 
 		$('#page').prepend('<div id="fh5co-offcanvas" />');
 		$('#page').prepend('<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle fh5co-nav-white"><i></i></a>');
@@ -366,7 +368,26 @@
 	$(function(){
 
 
-
+		$(document).on('click','#submail-submit',function(event){
+			$.ajax({
+				type:'post',
+				data: $('#sub-mail').serialize(),
+				url: "{{url('sub-mail')}}",
+				success: function(resp){
+					if(resp.code == 404){
+						$('.show-error').show();
+						$('.show-error').html(resp.msg);
+					}else{
+						$('.popup_this').html(
+							'<p>Đăng kí thành công</p>'
+							)
+						setTimeout(function(){ 
+							$('.popup_this').bPopup().close();
+						}, 1000);
+					}
+				}
+			}); 
+		});
 		$("#logout").on('click',function(event){
 			var kq = confirm("Bạn muốn đăng xuất?");
 			if(kq==false) event.preventDefault();

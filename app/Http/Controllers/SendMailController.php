@@ -6,6 +6,8 @@ use Mail;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
+use App\SubMail;
+use Illuminate\Support\Facades\DB;
 use App\Jobs\SendEmailJob;
 use Carbon\Carbon;
 class SendMailController extends Controller
@@ -71,6 +73,44 @@ class SendMailController extends Controller
         }
     }
 
+
+    public function subMail(Request $request){
+            $rules = [
+                'email' => 'required|email|min:10|max:255'
+            ];
+            $messages = [
+                'email.required' => 'Trường email không được để trống',
+                'email.email' => 'Sai định dạng email'
+            ];
+           
+            $validator = Validator::make($request->all(),$rules,$messages);
+            if($validator->fails()){
+                return self::JsonExport(404,$validator->errors()->first());
+            }else{
+                try{
+                    DB::beginTransaction();
+                    $data = [
+                        'mail' => $request->email
+                    ];
+                    $comp = subMail::where('mail',$request->email)->first();
+                    if($comp){
+                        return self::JsonExport(200,'Success');
+                    }
+                    $commit = SubMail::create($data);
+                    if($commit){
+                        DB::commit();
+                        return self::JsonExport(200,'Success');
+                    }else{
+                        DB::rollBack();
+                        return self::JsonExport(404,'Server Errors');
+                    }
+                }catch(\Exception $ex){
+                    DB::rollBack();
+                    return self::JsonExport(500,$ex->getMessage());
+                }
+            }
+    }   
+
     static public function JsonExport($code, $msg, $data = null, $optinal = null) {
 		$callback = [
 			'code' => $code,
@@ -86,5 +126,7 @@ class SendMailController extends Controller
 			$callback[$optinal['name']] = $optinal['data'];
 		}
 		return $callback;
-	}
+    }
+    
+
 }

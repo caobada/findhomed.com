@@ -31,7 +31,11 @@
   <link rel="stylesheet" type="text/css" href="{{asset('css/adminstyle.css')}}">
   <!--select 2 -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+  <!-- ChartJs -->
+  <link href="{{asset('bower_components\chart.js\src\Chart.min.css')}}" rel="stylesheet" />
 
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+ 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -164,7 +168,7 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i>Thống kê</a></li>
+            <li><a href="{{url('admin/thong-ke')}}"><i class="fa fa-circle-o"></i>Thống kê</a></li>
             <li><a href="{{url('admin/send-mail-marketing')}}"><i class="fa fa-circle-o"></i>Gửi mail</a></li>
           </ul>
         </li>

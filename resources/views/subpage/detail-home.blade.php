@@ -87,7 +87,13 @@
               <div class="col-lg-6 item-phone-post col-md-6 col-sm-6 col-xs-12">
                 <div class="summary_item_headline">Số điện thoại:</div>
                 <div class="summary_item_info summary_item_info_phone">
-                  <i class="fa fa-phone"></i> {{$detail->phone_home}}</div>
+                @if(Auth::check())
+                  <p data-id="{{$detail->hometype->id}}" data-user ="{{$detail->user->id}}" class="btn-phone-show" style="cursor:pointer;">Nhấn đề hiện điện thoại</p>
+                  <p class="hidden-phone" style="display:none"><i class="fa fa-phone"></i>{{$detail->phone_home}}</p>
+                   @else
+                   <a href="#" data-toggle="modal" data-target="#exampleModalCenter"> Đăng nhập để thấy số điện thoại</a>
+                   @endif
+                  </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="summary_item_headline">Ngày đăng:</div>
@@ -194,6 +200,7 @@
 @section('script')
 <script src="{{asset('js/jquery.sticky.js')}}"></script>
 <script type="text/javascript">
+ 
   var map, ele, mapH, mapW, addEle, mapL, mapN, mapZ;
 
   ele = 'maps_mapcanvas';
@@ -342,6 +349,26 @@ function markerdragEvent(markers){
 }
 
 $(function(){
+  var base_url = "{{url('')}}";
+  $('.btn-phone-show').on('click',function(){
+    $('.hidden-phone').show();
+    $(this).remove();
+    id = $(this).data('id');
+    user = $(this).data('user');
+    $.ajax({
+      type:'get',
+      url: base_url+'/report?user='+user+'&id='+id,
+      success:function(resp)
+      {
+        if(resp.code == 200){
+          console.log('Success');
+        }else{
+          console.log('Fails');
+        }
+      }
+    });
+  });
+
 $("#sticker").sticky({topSpacing:0});
 $('#save').click(function(){
   $id = $(this).data('id');

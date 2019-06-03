@@ -16,6 +16,22 @@ class Controller extends BaseController
     static public function getMenu() {
     	return HomeType::all();
     }
+    static public function JsonExport($code, $msg, $data = null, $optinal = null) {
+		$callback = [
+			'code' => $code,
+			'msg' => $msg,
+		];
+		if ($data != null) {
+			$callback['data'] = $data;
+		} else {
+			$callback['data'] = (object) [];
+		}
+
+		if ($optinal != null && is_array($optinal)) {
+			$callback[$optinal['name']] = $optinal['data'];
+		}
+		return $callback;
+    }
 }
 
 

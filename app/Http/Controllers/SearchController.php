@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Home;
+use Illuminate\Support\Facades\DB;
 use App\HomeType;
+use App\Report;
 use App\Province;
 
 class SearchController extends Controller {
@@ -123,7 +125,21 @@ class SearchController extends Controller {
 		}
 
 		try {
-			return view('subpage.search-home', ['search' => $a, 'hometype' => $this->Menu, 'province' => $this->province]);
+			if(isset($type)){
+				DB::beginTransaction();
+				$data = [
+					'hometype_id' => $type,
+					'type_report' => 1,
+					'user_id' => ''
+				];
+				$commit = Report::create($data);
+				if($commit){
+					DB::commit();
+					return view('subpage.search-home', ['search' => $a, 'hometype' => $this->Menu, 'province' => $this->province]);
+				}else{
+					DB::rollBack();
+				}
+			}
 		} catch (\Exception $ex) {
 			return "Có lỗi xảy ra!";
 		}

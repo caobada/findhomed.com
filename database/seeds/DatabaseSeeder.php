@@ -18,5 +18,6 @@ class DatabaseSeeder extends Seeder
       $this->call(DistrictSeeder::class);
       $this->call(WardSeeder::class);
       $this->call(EntrustSeeder::class);
+      $this->call(ReportSeeder::class);
     }
 }

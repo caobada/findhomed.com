@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\HomeType;
 use App\Province;
 use App\User;
+use App\RoleUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -103,7 +104,12 @@ class LoginController extends Controller {
 			'status' => 1
 		];
 	
-		User::create($data);
+		$users = User::create($data);
+		RoleUser::create([
+			'user_id' => $users->id,
+			'role_id' => 2
+		]);
+
 		return $authUser = User::where('provider_id', $user->id)->first();
     }
 }

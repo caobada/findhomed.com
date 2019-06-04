@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Home;
 use App\HomeType;
 use App\Role;
-use App\Role_User;
+use App\RoleUser;
 use App\User;
 use Entrust;
 use Illuminate\Http\Request;
@@ -103,30 +103,22 @@ class AdminController extends Controller {
 			// if account edit yourself
 			if (Auth::user()->id == $id) {
 				if ($request->password != '') {
-					User::where('id', $id)->update(['phone' => $request->phone, 'password' => Hash::make($request->password)]);
-				} else {
-					// isset pass but id = admin  = 1 so not have right edit
-					User::where('id', $id)->update(['phone' => $request->phone]);
-				}
+					User::where('id', $id)->update(['password' => Hash::make($request->password)]);
+				} 
 			}
 			// if insset password
 			else if ($request->password != '') {
-				User::where('id', $id)->update(['password' => Hash::make($request->password), 'phone' => $request->phone, 'status' => $request->status]);
+				User::where('id', $id)->update(['status' => $request->status]);
 			} else if ($id == 1) {
-				if ($request->password != '') {
-					User::where('id', $id)->update(['phone' => $request->phone, 'password' => Hash::make($request->password)]);
-				} else {
-					// isset pass but id = admin  = 1 so not have right edit
-					User::where('id', $id)->update(['phone' => $request->phone]);
-				}
+	
 			} else {
-				User::where('id', $id)->update(['phone' => $request->phone, 'status' => $request->status]);
+				User::where('id', $id)->update(['status' => $request->status]);
 			}
 			if ($request->role) {
 				if ($id == 1) {
 					return redirect()->back();
 				} else {
-					$role = Role_User::where('user_id', $id)->update(['role_id' => $request->role]);
+					$role = RoleUser::where('user_id', $id)->update(['role_id' => $request->role]);
 				}
 			}
 			return redirect()->back();
@@ -170,7 +162,7 @@ class AdminController extends Controller {
 			]);
 		} else {
 			User::find($id)->delete();
-			Role_User::where('user_id', $id)->delete();
+			RoleUser::where('user_id', $id)->delete();
 			return response()->json([
 				'error' => false,
 				'message' => 'success',

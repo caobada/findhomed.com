@@ -59,7 +59,10 @@ Route::get('drop-home/{id}', 'AdminController@Drop_home');
 Route::get('edit-home/{id}', 'AdminController@Edit_home');
 
 Route::post('save-home', 'AdminController@Savehome');
+
 Route::get('report','ReportController@report');
+
+
 Route::get('admin/dang-nhap', 'AdminController@Login');
 Route::post('admin/dang-nhap', 'AdminController@PostLogin');
 //contact
@@ -85,5 +88,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function 
 	Route::get('del-type/{id}', 'AdminController@DelType');
 	Route::get('send-mail-marketing','SendMailController@index');
 	Route::get('thong-ke','StatisticalController@index');
+	Route::post('thong-ke','ReportController@action_report');
 	Route::post('send-mail-action','SendMailController@action');
+	Route::get('shownumermail','SendMailController@showNumerMail');
 });

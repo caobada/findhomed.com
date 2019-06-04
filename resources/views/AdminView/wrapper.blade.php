@@ -199,7 +199,9 @@
 <div class="control-sidebar-bg"></div>
 </div>
   <!-- Control Sidebar -->
-
+<script>
+  var base_url = '{{url('')}}';
+</script>
 <!-- jQuery 3 -->
 <script src="{{asset('bower_components/jquery/dist/jquery.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
@@ -232,11 +234,11 @@
 <script src="{{asset('dist/js/adminlte.min.js')}}"></script>
 <!--Validate-->
 <script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>
-
+<script src="{{asset('js/select2.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('dist/js/demo.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/ckeditor/ckeditor.js')}}"></script>
+@yield('script')
 </body>
 </html>
 
-@yield('script')

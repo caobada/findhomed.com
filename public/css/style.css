@@ -28,6 +28,7 @@ body {
   position: fixed;
   padding: 30px;
 }
+
 #page {
   position: relative;
   overflow-x: hidden;

@@ -43,14 +43,22 @@ box-shadow: 0px 2px 8px 2px rgba(0,0,0,0.75);
                 <h2>Chúng tôi tìm thấy thông tin phù hợp với bạn!</h2>
                 <p><b class="title-mail">{{$booking->title}}</b></p>
                 {!!$booking->content!!}
+                @if(!empty($mess))
                 <div class="image-mail">
                     <img src='{{$message->embed($mess)}}' height="200px" width="100%">
                 </div>
+                @endif
                 
                 @if(isset($booking->id_home) && is_numeric($booking->id_home))
-                <a href='{{url("detail/$booking->id_home")}}'>Chi tiết bài viết</a>
+                <a href='{{url("detail/$booking->id_home")}}'>Chi tiết bài viết</a><br>
                 @else
-                <a href='{{url("/")}}'>Truy cập trang để tìm hiểu thêm.</a>
+                <a href='{{url("/")}}'>Truy cập trang để tìm hiểu thêm.</a><br>
+                @endif
+
+                @if(isset($booking->mylink))
+                    @foreach($booking->mylink as $val)
+                        <a href='{{$val}}'>{{$val}}</a><br>
+                    @endforeach
                 @endif
             </div>
         </div>

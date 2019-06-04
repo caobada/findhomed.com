@@ -18,6 +18,7 @@ Route::get('pushnoti','PushNotification@push');
 Route::get('province/{id}', 'ShowController@province');
 Route::get('district/{id}', 'ShowController@district');
 
+Route::get('subscription','PushNotification@subScribe');
 Route::get('detail/{id}', 'DetailController@show');
 
 Route::post('sub-mail', 'SendMailController@subMail');

@@ -77,6 +77,14 @@
 
   function showToken(currentToken) {
     // Show token in console and UI.
+    $.ajax({
+      type:'get',
+      url: base_url+'/subscription',
+      data: {'token':currentToken},
+      success:function(resp){
+        console.log(resp);
+      }
+    });
     console.log(currentToken);
  
   }

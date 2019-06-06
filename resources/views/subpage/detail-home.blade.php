@@ -71,14 +71,15 @@
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="summary_item_headline">Đối tượng:</div>
-                <div class="summary_item_info"><?php if ($detail->doituong == 0) {
-	echo "Tất cả";
-} else if ($detail->doituong == 1) {
-	echo "Nam";
-} else {
-	echo "Nữ";
-}
-?></div>
+                <div class="summary_item_info">
+                @if ($detail->doituong == 0)
+	                Tất cả
+                @elseif ($detail->doituong == 1) 
+                  Nam
+                @else 
+                  Nữ
+                @endif
+              </div>
               </div>
               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="summary_item_headline">Người đăng:</div>
@@ -90,9 +91,9 @@
                 @if(Auth::check())
                   <p data-id="{{$detail->hometype->id}}" data-user ="{{$detail->user->id}}" class="btn-phone-show" style="cursor:pointer;">Nhấn đề hiện điện thoại</p>
                   <p class="hidden-phone" style="display:none"><i class="fa fa-phone"></i>{{$detail->phone_home}}</p>
-                   @else
+                @else
                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter"> Đăng nhập để thấy số điện thoại</a>
-                   @endif
+                @endif
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -106,7 +107,7 @@
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <div class="summary_item_headline">Giá cho thuê:</div>
                   <div class="summary_item_info summary_item_info_price">
-                    <?php $var = explode("@", $detail->price);if ($var[1] == 1) {echo number_format($var[0]) . " Nghìn/tháng";} else {echo $var[0] . ' Triệu/tháng';}?>
+                  {{$detail->price}} {{$detail->typeprice->value}}
                   </div>
                 </div>
               </div>

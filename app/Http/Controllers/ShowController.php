@@ -23,16 +23,30 @@ class ShowController extends Controller {
 		$this->province = Province::orderBy('name', 'ASC')->get();
 	}
 	public function index() {
-		$topviewpost = Home::orderBy('view', 'Desc')->where('hienthi', 1)->limit(6)->get();
+		$topviewpost = Home::with('typeprice')
+		->orderBy('view', 'Desc')
+		->where('hienthi', 1)
+		->limit(6)
+		->get();
+		
+		$top10 = Home::with('typeprice')
+		->orderBy('home_id', 'Desc')
+		->where('hienthi', 1)
+		->paginate(10);
 
-		$top10 = Home::orderBy('home_id', 'Desc')->where('hienthi', 1)->paginate(10);
-		$rand = Home::all()->random(3)->where('hienthi', 1);
+		$rand = Home::with('typeprice')
+		->where('hienthi', 1)
+		->get()
+		->random(3);
 
 		return view('subpage.main-content', ['hometype' => $this->Menu, 'top6post' => $topviewpost, 'top10s' => $top10, 'rand' => $rand, 'province' => $this->province]);
 
 	}
 	public function showDetail() {
-		$rand = Home::all()->random(3)->where('hienthi', 1);
+		$rand = Home::with('typeprice')
+		->where('hienthi', 1)
+		->get()
+		->random(3);
 		return view('subpage.detail-home', ['hometype' => $this->Menu, 'rand' => $rand, 'province' => $this->province]);
 	}
 

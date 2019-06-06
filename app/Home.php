@@ -25,6 +25,9 @@ class Home extends Model
     public function user(){
         return $this->belongsTo('App\User','user_id','id');
     }
+    public function typeprice(){
+        return $this->belongsTo('App\TypeMeasure','type_price','id');
+    }
     public function sluggable()
     {
         return [

@@ -39,7 +39,7 @@ class AdminController extends Controller {
 			if (count($id) > 0) {
 				foreach ($id as $key => $value) {
 					$data = Home::select('home_id', 'title')->where('home_id', $value)->get();
-					echo '<li><a href=http://localhost/FindHomeD/detail/' . $data[0]->home_id . '>' . $data[0]->title . '</a></li>';
+					echo '<li><a href=http://localhost/findhomed.com/detail/' . $data[0]->home_id . '>' . $data[0]->title . '</a></li>';
 
 				}
 			} else {
@@ -49,7 +49,9 @@ class AdminController extends Controller {
 
 	}
 	public function manager_post_home() {
-		$home = Home::orderBy('home_id', 'desc')->get();
+		$home = Home::with('typeprice')
+		->orderBy('home_id', 'desc')
+		->get();
 		return view('AdminView.manager-post-home', ['home' => $home]);
 	}
 	public function EditShow($id, $val) {

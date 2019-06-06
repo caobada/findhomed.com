@@ -69,8 +69,9 @@
                                         <div class="col-sm-6 col-xs-12 ">
                                             <label class="col-sm-12 control-lable ">Đơn vị<span class="red-require "></span></label>
                                             <select class="form-control " name="pricetype">
-                                                <option value="0">Triệu/tháng</option>
-                                                <option value="1">Nghìn/tháng</option>
+                                                @foreach($typeprice as $val)
+                                                    <option value="{{$val->id}}">{{$val->value}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

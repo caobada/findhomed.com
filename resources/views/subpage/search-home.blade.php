@@ -6,6 +6,11 @@
             <div class="block-left">
                 <div class="wrapper">
                     <ul class="list-post">
+                    @if(count($search) == 0)
+                    <div class="alert alert-info" role="alert">
+                        Dữ liệu tìm kiếm không tồn tại!
+                    </div>
+                    @endif
                         @foreach($search as $top10)
                         <li class="post-item">
                             <div class="media item-new">

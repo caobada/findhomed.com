@@ -24,7 +24,8 @@ class CreateHomeTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('desc');
-            $table->string('price');
+            $table->float('price');
+            $table->string('type_price')->default(1);
             $table->string('area');
             $table->string('phone_home');
             $table->string('street');
@@ -33,7 +34,7 @@ class CreateHomeTable extends Migration
             $table->string('location_map')->nullable();
             $table->text('image');
             $table->integer('view');
-            $table->integer('hienthi');
+            $table->integer('hienthi')->default(0);
             $table->integer('doituong');
             $table->timestamps();
             $table->softDeletes();

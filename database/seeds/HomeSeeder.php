@@ -25,7 +25,7 @@ class HomeSeeder extends Seeder
             - Để xe tầng 1 rộng rãi
             
             ',
-            'price'=>'2.5@0',
+            'price'=>'2.5',
             'area'=>'33',
             'street'=>'Đường Nguyễn hoàng Tôn,Phường Xuân La',
             'district'=>3,
@@ -62,7 +62,7 @@ class HomeSeeder extends Seeder
             BẠN NÀO CÓ NHU CẦU THUÊ PHÒNG VUI LÒNG LIÊN HỆ MR. HÙNG 0989.893.675. ƯU TIÊN CÁC BẠN SV
             
             ',
-            'price'=>'2.6@0',
+            'price'=>'2.6',
             'area'=>'17',
             'street'=>'313 Thanh Nhàn,Phường Bạch Mai',
             'district'=>7,
@@ -114,7 +114,7 @@ class HomeSeeder extends Seeder
             Hãy gọi ngay: 097 337 3779 A. Tuân để được xem và thuê phòng.
             
             ',
-            'price'=>'1.5@0',
+            'price'=>'1.5',
             'area'=>'35',
             'street'=>'Đường Xô Viết Nghệ Tĩnh,Phường 26',
             'district'=>765,
@@ -148,7 +148,7 @@ class HomeSeeder extends Seeder
             Cám ơn cả nhà đã xem tin!
             
             ',
-            'price'=>'1.35@0',
+            'price'=>'1.35',
             'area'=>'16',
             'street'=>'161c/101 Đường Lạc Long Quân,Phường 03',
             'district'=>772,
@@ -181,7 +181,7 @@ class HomeSeeder extends Seeder
              - Bạn ở cần cù, sạch sẽ
             
             ',
-            'price'=>'1@0',
+            'price'=>'1',
             'area'=>'25',
             'street'=>'32 Lê Lợi,Phường 01',
             'district'=>764,
@@ -214,7 +214,7 @@ class HomeSeeder extends Seeder
             Mọi chi tiết liên hệ theo số ĐT: 0933431022 hoặc 01664398448 ( A.Sơn )
             
             ',
-            'price'=>'1.8@0',
+            'price'=>'1.8',
             'area'=>'46',
             'street'=>'98/10 Đường Y Wang,Phường Ea Tam',
             'district'=>643,
@@ -241,7 +241,7 @@ class HomeSeeder extends Seeder
             - Nhà chính chủ đang ở nay chuyển lên Sài Gòn nên cho thuê, để lại nội thất: tủ đứng phòng khách (đựng tivi, sách vở, đồ dùng...), sofa, giường mới 1m6, máy lạnh rất mới inverter tiết kiệm điện (mới xài được vài chục tiếng đồng hồ), bếp ga (2 bếp) và bình ga lớn, máy tập thể thao đa năng, bàn làm việc...
             - Địa chỉ: 77/3 Hoàng Việt, phường Thắng Nhì, tp. Vũng Tàu - Cách mặt tiền đường Hoàng Việt 20m; Gần ngã tư Giếng nước - Trong bán kính vài trăm mét có 3 chợ, siêu thị Coopmart, trường cấp 1,2,3 và trường mầm non.  - Cực kỳ an ninh, bên cạnh là nhà trẻ có người trông coi suốt ngày. - Giá thuê: 3.5 triệu/tháng - LH chính chủ: Mai Lan 0908.992.308
             ',
-            'price'=>'3.5@0',
+            'price'=>'3.5',
             'area'=>'63',
             'street'=>'Đường Hoàng Việt,Phường 6',
             'district'=>747,
@@ -291,7 +291,7 @@ class HomeSeeder extends Seeder
             - Mr.Châu: 0908464323 ( Quản Lý Tòa Nhà )
             
             ',
-            'price'=>'2.3@0',
+            'price'=>'2.3',
             'area'=>'20',
             'street'=>'1/33 Sơn Kỳ, phường Sơn Kỳ',
             'district'=>767,
@@ -340,7 +340,7 @@ class HomeSeeder extends Seeder
             Hãy gọi ngay 0165 655 2793 A Đức để xem và thuê phòng .
             
             ',
-            'price'=>'900000@1',
+            'price'=>'900000',
             'area'=>'25',
             'street'=>'7 Đường Vĩnh Khánh,Phường 08',
             'district'=>773,
@@ -368,7 +368,7 @@ class HomeSeeder extends Seeder
             Có thang máy, điện nước giá gốc, 2 WC, ốp gạch men toàn bộ khu vực bếp và xung quanh tường các phòng, có ban công để máy giặt và phơi đồ. 3 cửa sổ. Cửa ra vào 2 lớp an toàn (sắt và gỗ cao cấp). Giá 8.5tr/tháng.
             
             ',
-            'price'=>'8.5@0',
+            'price'=>'8.5',
             'area'=>'56',
             'street'=>'Chung cư Hòa Bình, Ba Tháng Hai',
             'district'=>771,
@@ -410,7 +410,7 @@ class HomeSeeder extends Seeder
             Lh: 0933 310 310
             
             ',
-            'price'=>'3@0',
+            'price'=>'3',
             'area'=>'25',
             'street'=>'Đường Phạm Văn Chiêu,Quận Gò Vấp',
             'district'=>764,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Home;
 use App\HomeType;
 use App\Province;
+use App\TypePrice;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,7 +21,8 @@ class PostController extends Controller {
 	public function index() {
 
 		if (Auth::check()) {
-			return view('subpage.post-home', ['hometype' => $this->Menu, 'province' => $this->province]);
+			$typeprice = TypePrice::all();
+			return view('subpage.post-home', ['hometype' => $this->Menu, 'province' => $this->province,'typeprice'=>$typeprice]);
 		} else {
 			return redirect('/');
 		}
@@ -35,8 +37,8 @@ class PostController extends Controller {
 			$data->doituong = $request->doituong;
 			$price = $request->price;
 			$data->user_id = Auth::user()->id;
-			$pricetype = $request->pricetype;
-			$data->price = $price . '@' . $pricetype;
+			$data->price = $price;
+			$data->type_price = $request->pricetype;
 			$data->area = $request->area;
 			$data->city = $request->province;
 			$data->district = $request->district;

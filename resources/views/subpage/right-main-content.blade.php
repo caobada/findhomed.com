@@ -24,11 +24,7 @@
                     <a href='{{url("detail/$rand->home_id")}}'>
                         <div class="item-detail">
                             <span class="item-title">{{$rand->title}}</span>
-                            <span class="item-price"><?php                                      
-                            $var = explode("@",$rand->price);
-                            if($var[1]==1) echo  number_format($var[0])." Nghìn/tháng";
-                            else echo $var[0].' Triệu/tháng';
-                            ?></span>
+                            <span class="item-price">{{$rand->price}} {{$rand->typeprice->value}}</span>
                         </div>
                     </a>
                 </li>
@@ -38,6 +34,6 @@
     </div>
 </div>
 <!-- Quảng cáo -->
-<div class="ads">
+<!-- <div class="ads">
     <a target="_blank" href="https://atrungroi.com/xstc-xo-so-tu-chon-mega-645-vietlott.html"><img src="{{asset('images/ads1.gif')}}" /></a>
-</div>
+</div> -->

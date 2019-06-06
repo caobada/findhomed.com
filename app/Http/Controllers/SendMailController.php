@@ -15,12 +15,7 @@ use App\Jobs\SendEmailJob;
 use Carbon\Carbon;
 class SendMailController extends Controller
 {
-    //
-    public function SendMail(){
-        $booking = new \stdClass();
-        $booking->name = "Cao Xuan My";
-        Mail::to('xuanmy.cntt96@gmail.com')->send(new MailLooking($booking));
-    }
+
     public function index(){
         $hometype = HomeType::where('status',1)->get();
         $home = Home::where('hienthi',1)->get();
@@ -84,8 +79,9 @@ class SendMailController extends Controller
                 ->get();
             }elseif($type == 1){
                 $info_user = [];
-                $mail_arr = Report::with('user')->selectRaw('user_id')
-                ->whereIn('user_id',$request->option_hometype)
+                $mail_arr = Report::with('user')->select('user_id')
+                ->whereIn('hometype_id',$request->option_hometype)
+                ->where('type_report',2)
                 ->distinct()
                 ->get();
                 foreach($mail_arr as $val){
@@ -115,11 +111,20 @@ class SendMailController extends Controller
             }
 
             foreach($info_user as $val){
-                if(!empty($val->mail) && $val->mail != null && $val->mail != 'null'){
-                    SendEmailJob::dispatch($booking,$val->mail,$filelocal)->delay(Carbon::now()->addSeconds(2));
+                if($type != 1){
+                    if(!empty($val->mail) && $val->mail != null && $val->mail != 'null'){
+                
+                        SendEmailJob::dispatch($booking,$val->mail,$filelocal)->delay(Carbon::now()->addSeconds(2));
+                    }
+                }else{
+                    if(!empty($val['mail']) && $val['mail'] != null && $val['mail'] != 'null'){
+                
+                        SendEmailJob::dispatch($booking,$val['mail'],$filelocal)->delay(Carbon::now()->addSeconds(2));
+                    }
                 }
+                
             }
-            return redirect()->back()->with('success');
+            return redirect()->back()->with('success','thanh cong');
             
         }
     }

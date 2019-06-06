@@ -39,15 +39,7 @@
 								<td>{{$home->user->username}}({{$home->user_id}})</td>
 								<td>{{$home->title}}</td>
 								<td>{{$home->hometype->nametype}}</td>
-								<td><?php
-$var = explode("@", $home->price);
-if ($var[1] == 1) {
-	echo number_format($var[0]) . " Nghìn/tháng";
-} else {
-	echo $var[0] . ' Triệu/tháng';
-}
-
-?></td>
+								<td>{{$home->price}} {{$home->typeprice->value}}</td>
 								<td><a target="_blank" href='{{url("detail/$home->home_id")}}'><button class="btn bg-orange btn-flat margin">Xem bài viết</button></a></td>
 								<td>{{$home->view}}</td>
 								<td><input type="checkbox" class="check" data-id="{{$home->home_id}}" data-toggle="toggle" <?php if ($home->hienthi == 1) {

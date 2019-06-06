@@ -29,7 +29,7 @@
 							<tr>
 								<th>ID User</th>
 								<th>Tài khoản</th>
-								<th>Điện thoại</th>
+								<th>Email</th>
 								<th>Ngày tạo</th>
 								<th>Trạng thái</th>
 								<th>Quyền</th>
@@ -41,7 +41,7 @@
 							<tr @if($user->id == Auth::user()->id) style="color:#ff9c33" @endif>
 								<td>{{$user->id}}</td>
 								<td>{{$user->username}}</td>
-								<td>{{$user->phone}}</td>
+								<td>{{$user->email}}</td>
 								<td>{{$user->created_at}}</td>
 								<td>@if($user->status ==1)
 									<button class="btn btn-xs btn-success">Active</button>

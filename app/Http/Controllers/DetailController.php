@@ -21,7 +21,9 @@ class DetailController extends Controller {
 
 		if (isset($id)) {
 			try {
-				$detail = Home::where('home_id', $id)->get();
+				$detail = Home::with('typeprice')
+				->where('home_id', $id)
+				->get();
 				$created_at = $detail[0]->created_at;
 				$date = explode(" ", $created_at)[0];
 				$time = explode(" ", $created_at)[1];

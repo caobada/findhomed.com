@@ -64,7 +64,7 @@
 									</ul>
 								</li>
 								<li>@if(Auth::check())<a href="{{url('dang-tin')}}">@else <a href="#" data-toggle="modal" data-target="#exampleModalCenter"> @endif Đăng tin</a></li>
-								@if(Auth::check())<li><a href="{{url('quan-ly-bai-dang')}}">Quản lý bài đăng</a></li>@endif
+								<!-- @if(Auth::check())<li><a href="{{url('quan-ly-bai-dang')}}">Quản lý bài đăng</a></li>@endif -->
 
 								<li><a href="{{url('lien-he')}}">Liên hệ</a></li>
 
@@ -286,7 +286,7 @@
 </html>
 <script type="text/javascript" src="{{asset('js/jquery.session.js')}}"></script>
 <script>
-  var base_url = 'http://'+'<?php echo  $_SERVER['SERVER_NAME']  ?>'+'/findhomed.com';  
+  var base_url = "{{url('')}}";  
 </script>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/6.0.4/firebase-app.js"></script>
@@ -319,8 +319,7 @@
 			$('.popup_this').bPopup();
 			$.cookie('sub-mail',true);
 		}else{
-			$('.popup_this').show();
-			$('.popup_this').bPopup();
+			$('.popup_this').remove();
 		}
 		
 		

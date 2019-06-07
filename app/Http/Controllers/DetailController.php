@@ -8,14 +8,7 @@ use App\HomeType;
 use App\Province;
 
 class DetailController extends Controller {
-	protected $province;
-	protected $Menu;
-	protected $rand;
-	public function __construct() {
-		$this->Menu = HomeType::all();
-		$this->rand = Home::all()->random(3);
-		$this->province = Province::orderBy('name', 'ASC')->get();
-	}
+
 	//
 	public function show($id) {
 
@@ -58,7 +51,7 @@ class DetailController extends Controller {
 				$view = $detail[0]->view;
 				$district = District::where('provinceid', $detail[0]->city)->get();
 				Home::where('home_id', $id)->update(['view' => ++$view]);
-				return view('subpage.detail-home', ['detail' => $detail, 'hometype' => $this->Menu, 'rand' => $this->rand, 'province' => $this->province, 'district' => $district, 'time' => $str]);
+				return view('subpage.detail-home', ['detail' => $detail, 'district' => $district, 'time' => $str]);
 
 			} catch (\Exception $ex) {
 				return view('errors.404');

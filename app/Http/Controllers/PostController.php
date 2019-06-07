@@ -9,20 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller {
-	protected $province;
-	protected $Menu;
-	protected $rand;
-	public function __construct() {
-		$this->Menu = HomeType::where('status', 1)->get();
-
-		$this->province = Province::orderBy('name', 'ASC')->get();
-	}
 	//
 	public function index() {
 
 		if (Auth::check()) {
 			$typeprice = TypePrice::all();
-			return view('subpage.post-home', ['hometype' => $this->Menu, 'province' => $this->province,'typeprice'=>$typeprice]);
+			return view('subpage.post-home', ['typeprice'=>$typeprice]);
 		} else {
 			return redirect('/');
 		}

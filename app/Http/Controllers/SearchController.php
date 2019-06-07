@@ -8,12 +8,7 @@ use App\Report;
 use App\Province;
 
 class SearchController extends Controller {
-	protected $Menu;
-	//
-	public function __construct() {
-		$this->Menu = HomeType::all();
-		$this->province = Province::orderBy('name', 'ASC')->get();
-	}
+
 	public function Search() {
 		if (isset($_GET['type'])) {
 			$type = $_GET['type'];
@@ -135,7 +130,7 @@ class SearchController extends Controller {
 				$commit = Report::create($data);
 				if($commit){
 					DB::commit();
-					return view('subpage.search-home', ['search' => $a, 'hometype' => $this->Menu, 'province' => $this->province]);
+					return view('subpage.search-home', ['search' => $a]);
 				}else{
 					DB::rollBack();
 				}

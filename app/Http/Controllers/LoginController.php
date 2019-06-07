@@ -12,12 +12,7 @@ use Socialite, Redirect, Session, URL;
 
 class LoginController extends Controller {
 	//
-	protected $province;
-	protected $Menu;
-	public function __construct() {
-		$this->Menu = HomeType::all();
-		$this->province = Province::orderBy('name', 'ASC')->get();
-	}
+
 	public function login(Request $request) {
 
 		if (Auth::attempt(['username' => $request->username, 'password' => $request->password, 'status' => 1])) {
@@ -40,7 +35,7 @@ class LoginController extends Controller {
 		if (Auth::check()) {
 			return redirect("");
 		} else {
-			return view('subpage.register', ['hometype' => $this->Menu, 'province' => $this->province]);
+			return view('subpage.register');
 		}
 
 	}

@@ -9,6 +9,7 @@ use App\Province;
 use App\User;
 use App\Ward;
 use Excel;
+use Config;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,12 +17,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ShowController extends Controller {
 	//
-	protected $province;
-	protected $Menu;
-	public function __construct() {
-		$this->Menu = HomeType::where('status', 1)->get();
-		$this->province = Province::orderBy('name', 'ASC')->get();
-	}
+	
 	public function index() {
 		$topviewpost = Home::with('typeprice')
 		->orderBy('view', 'Desc')
@@ -39,7 +35,7 @@ class ShowController extends Controller {
 		->get()
 		->random(3);
 
-		return view('subpage.main-content', ['hometype' => $this->Menu, 'top6post' => $topviewpost, 'top10s' => $top10, 'rand' => $rand, 'province' => $this->province]);
+		return view('subpage.main-content', [ 'top6post' => $topviewpost, 'top10s' => $top10, 'rand' => $rand]);
 
 	}
 	public function showDetail() {
@@ -47,7 +43,7 @@ class ShowController extends Controller {
 		->where('hienthi', 1)
 		->get()
 		->random(3);
-		return view('subpage.detail-home', ['hometype' => $this->Menu, 'rand' => $rand, 'province' => $this->province]);
+		return view('subpage.detail-home', [ 'rand' => $rand]);
 	}
 
 	public function province($id) {
@@ -82,7 +78,7 @@ class ShowController extends Controller {
 			$type_home = Home::where('type_id', $type_id[0]->id)->orderBy('view', 'Desc')->where('hienthi', 1)->limit(6)->get();
 			$top10 = Home::where('type_id', $type_id[0]->id)->orderBy('home_id', 'Desc')->where('hienthi', 1)->paginate(10);
 			$rand = Home::all()->random(3)->where('hienthi', 1);
-			return view('subpage.main-content', ['hometype' => $this->Menu, 'top6post' => $type_home, 'top10s' => $top10, 'rand' => $rand, 'province' => $this->province]);
+			return view('subpage.main-content', ['top6post' => $type_home, 'top10s' => $top10, 'rand' => $rand]);
 		} catch (\Exception $ex) {
 			return view('errors.404');
 		}
@@ -96,7 +92,7 @@ class ShowController extends Controller {
 		$data = Home::all();
 		Excel::create('data', function ($excel) use ($data) {
 			$excel->sheet('1', function ($sheet) use ($data) {
-				$sheet->loadView('subpage.datatable', ['data' => $data, 'hometype' => $this->Menu, 'province' => $this->province]);
+				$sheet->loadView('subpage.datatable', ['data' => $data]);
 			});
 		})->download('xls');
 	}
@@ -153,13 +149,13 @@ class ShowController extends Controller {
 		if (Auth::check()) {
 			$data = Home::where('user_id', Auth::user()->id)->get();
 
-			return view('subpage.manager', ['hometype' => $this->Menu, 'province' => $this->province, 'data' => $data]);
+			return view('subpage.manager', ['data' => $data]);
 		} else {
 			return redirect("/");
 		}
 	}
 	public function Contact() {
-		return view('subpage.contact', ['hometype' => $this->Menu, 'province' => $this->province]);
+		return view('subpage.contact');
 	}
 
 }

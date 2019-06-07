@@ -9,9 +9,9 @@ class TypeMeasure extends Model
     //
     protected $table = 'type_measure';
     protected $fillable = [
-		'type','value'
+		'type','option','from','to','value_name',
     ];
     public function home(){
     	return $this->belongsTo('App\Home','name','type_price');
     } 
-}
+  }

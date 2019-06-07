@@ -3,6 +3,10 @@
 namespace App\Providers;
 use Schema;
 use Illuminate\Support\ServiceProvider;
+use App\HomeType;
+use App\Province;
+use Illuminate\Support\Facades\View;
+use Config;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,6 +19,16 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+        $hometype = HomeType::where('status', 1)->get();
+        $province = Province::orderBy('name', 'ASC')->get();
+        View::share('hometype', $hometype);
+        View::share('province', $province);
+
+
+        
+        Config::set([
+            'env.MAIL_DRIVER' => 'http://example.com'
+        ]);
     }
 
     /**

@@ -8,7 +8,9 @@ use Validator;
 class PushNotification extends Controller
 {
     //
-    
+    public function index(){
+        return view('AdminView.push');
+    }
     public function push(){
         $body = "hello";
         $title = "hello";

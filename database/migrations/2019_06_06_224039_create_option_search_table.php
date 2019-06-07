@@ -18,7 +18,8 @@ class CreateOptionSearchTable extends Migration
             $table->increments('id');
             $table->tinyInteger('type')->comment('1: khoảng giá, 2: diện tích');
             $table->tinyInteger('option')->comment('1: dưới, 2: trên, 3: khoảng');
-            $table->string('name');
+            $table->double('from');
+            $table->double('to')->nullable();
             $table->string('value_name');
             $table->timestamps();
             $table->softDeletes();

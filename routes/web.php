@@ -92,4 +92,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'adminmiddleware'], function 
 	Route::post('thong-ke','ReportController@action_report');
 	Route::post('send-mail-action','SendMailController@action');
 	Route::get('shownumermail','SendMailController@showNumerMail');
+	Route::get('thong-bao','PushNotification@index');
+	
 });

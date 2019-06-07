@@ -1,0 +1,10 @@
+<?php 
+return
+[
+    'MAIL_DRIVER'=>'smtp',
+    'MAIL_HOST'=>'smtp.gmail.com',
+    'MAIL_PORT'=>587,
+    'MAIL_USERNAME'=>'cao.bada96@gmail.com',
+    'MAIL_PASSWORD'=>'fenekpjktducvbjh',
+    'MAIL_ENCRYPTION'=>'TLS'
+];

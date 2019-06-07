@@ -159,6 +159,8 @@
             <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Liên hệ </a></li>
           </ul>
         </li> -->
+
+        <!-- Mail Marketing -->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
@@ -170,6 +172,28 @@
           <ul class="treeview-menu">
             <li><a href="{{url('admin/thong-ke')}}"><i class="fa fa-circle-o"></i>Thống kê</a></li>
             <li><a href="{{url('admin/send-mail-marketing')}}"><i class="fa fa-circle-o"></i>Gửi mail</a></li>
+          </ul>
+        </li>
+
+          <!-- Notification -->
+        <li>
+          <a href="{{url('admin/thong-bao')}}">
+            <i class="fa fa-users"></i>
+            <span>Gửi notifcation</span>
+          </a>
+        </li>
+      <!-- Option -->
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>Cài đặt</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href=""><i class="fa fa-circle-o"></i>Cài đặt tìm kiếm</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>Cài đặt </a></li>
           </ul>
         </li>
 
